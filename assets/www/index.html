@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>PhoneGap Bar Code Scanner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="lib/jquery.mobile-1.1.1.css" />
+<script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
+<script src="requireConf.js"></script>
+<script data-main="app/index" src="require.js"></script>
+</head>
+<body style="display: none;">
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>PhoneGap Bar Code Scanner</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content">
+			<button id="butScan" data-role="button" data-icon="star">Scan code!</button>
+			<h2>Scanned code:</h2>
+			<ul data-role="listview">
+				<li id="scanMessage">
+					<span class="output"></span>
+				</li>
+				<li id="scanText">
+					Scanned Text: <span class="output"></span>
+				</li>
+				<li id="scanFormat">
+					Type of code: <span class="output"></span>
+				</li>
+			</ul>
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /page -->
+</body>
+</html>
