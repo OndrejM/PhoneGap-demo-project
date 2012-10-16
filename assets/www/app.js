@@ -1,16 +1,32 @@
-// after module loads, cass app.start(...) to run the application code after all environment is initialized
+// after module loads, call app.start(...) to run the application code after all environment is initialized
 // app.start(...) executes callback after all is loaded, similarly to jQuery('document').ready(...)
 
-define(['jquery'], function(jQuery) {
+define(['jquery', 'jquery.mobile', "i18n!nls/labels"], function(jQuery, jQueryMobile, labels) {
 	
 	var $ = jQuery;
 
 	function App() {
+		var app = this;
+		
+		var priv = {
+			initialize : function() {
+			},
+			loadApp : function() {
+				app.show();
+				jQueryMobile.initializePage();
+				for (callback in this.afterLoadCallbacks) {
+					callback();
+				}
+			},
+			afterLoadCallbacks : []
+		};
+		
 		this.start = function(callback) {
 
 			function onDeviceReady() {
-				$('body').show();
+				priv.initialize();
 				callback();
+				priv.loadApp();
 			}
 			
 			if (typeof device !== 'undefined') {
@@ -27,6 +43,30 @@ define(['jquery'], function(jQuery) {
 					onDeviceReady();
 				});
 			}
+		}
+		
+		this.show = function() {
+			$('body').show();
+		};
+		
+		this.runAfterLoad = function(callback) {
+			priv.afterLoadCallbacks[priv.afterLoadCallbacks] = callback;
+		};
+		
+		this.res = {
+			labels : labels
+		};
+		
+		this.applyLabels = function() {
+			$('.i18n').each(function(i, elem) {
+				var $elem = $(elem);
+				var labelKeys = $elem.text().trim().split('.');
+				var label = app.res.labels;
+				for (iKey in labelKeys) {
+					label = label[labelKeys[iKey]];
+				}
+				$elem.text(label);
+			});
 		}
 	}
 	

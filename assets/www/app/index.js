@@ -1,7 +1,9 @@
-requirejs([ 'app', 'jquery.mobile', 'barcodescanner' ],
+require([ 'app', 'jquery.mobile', 'barcodescanner', 'css!style/jquery.mobile-fix' ],
 	function(app, jqueryMobileModule, barcodeScanner) {
 
 	app.start(function() {
+		var $$ = app.res.labels;
+		app.applyLabels();
 		var scan = {
 			msg : $('#scanMessage'),
 			text : $('#scanText'),
@@ -30,9 +32,9 @@ requirejs([ 'app', 'jquery.mobile', 'barcodescanner' ],
 			}
 			barcodeScanner.scan(function(result) {
 				if (result.cancelled) {
-					scan.msg.outputText('Scan cancelled');
+					scan.msg.outputText($$.scan.cancelled);
 				} else {
-					scan.msg.outputText('We got a barcode');
+					scan.msg.outputText($$.scan.ok);
 					scan.text.outputText(result.text);
 					scan.fmt.outputText(result.format);
 				}
@@ -43,7 +45,7 @@ requirejs([ 'app', 'jquery.mobile', 'barcodescanner' ],
 					}
 				}
 			}, function(error) {
-				scan.msg.text("Scanning failed: " + error).show();
+				scan.msg.text($$.scan.failed + error).show();
 			});
 		});
 	});

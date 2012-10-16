@@ -12,13 +12,16 @@ var requirejs = {
 	// never includes a ".js" extension since
 	// the paths config could be for a directory.
 	paths : {
-		app : '../app'
+		app : '../app',
+		style : '../css',
+		nls: '../nls'
 	},
 	map : {
 		'*' : {
 //			'cordova' : 'cordova-2.1.0',
 			'jquery' : 'jquery-1.8.2',
-			'jquery.mobile' : 'jquery.mobile-1.1.1'
+			'jquery.mobile' : 'jquery.mobile-1.1.1',
+			'css': 'require-css/css'
 		}
 	},
 	shim: {
@@ -30,11 +33,10 @@ var requirejs = {
 		},
 		'jquery.mobile-1.1.1' : {
 			exports: 'jQuery.mobile',
-			deps: ['jquery'],
+			deps: ['jquery', 'jquery.mobile-settings'],
 			init: function() {
 				console.log('jquery.mobile init');
 			}
-
 		},
 		
 		'barcodescanner' : {
@@ -43,5 +45,8 @@ var requirejs = {
 				console.log('barcodescanner init');
 			}
 		}
+	},
+	requireCss: {
+		alwaysInjectUsingLink: true
 	}
 };

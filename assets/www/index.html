@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>PhoneGap Bar Code Scanner</title>
+<title class="i18n">title</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="lib/jquery.mobile-1.1.1.css" />
 <script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
@@ -12,22 +12,22 @@
 	<div data-role="page">
 
 		<div data-role="header">
-			<h1>PhoneGap Bar Code Scanner</h1>
+			<h1 class="i18n">title</h1>
 		</div>
 		<!-- /header -->
 
 		<div data-role="content">
-			<button id="butScan" data-role="button" data-icon="star">Scan code!</button>
-			<h2>Scanned code:</h2>
+			<button id="butScan" data-role="button" data-icon="star" class="i18n">scan.button.caption</button>
+			<h2 class="i18n">scan.result.header</h2>
 			<ul data-role="listview">
 				<li id="scanMessage">
 					<span class="output"></span>
 				</li>
 				<li id="scanText">
-					Scanned Text: <span class="output"></span>
+					<span class="i18n">scan.result.text</span> <span class="output"></span>
 				</li>
 				<li id="scanFormat">
-					Type of code: <span class="output"></span>
+					<span class="i18n">scan.result.format</span><span class="output"></span>
 				</li>
 			</ul>
 		</div>
