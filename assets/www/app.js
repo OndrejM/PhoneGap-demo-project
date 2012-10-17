@@ -1,7 +1,7 @@
 // after module loads, call app.start(...) to run the application code after all environment is initialized
 // app.start(...) executes callback after all is loaded, similarly to jQuery('document').ready(...)
 
-define(['jquery', 'jquery.mobile', "i18n!nls/labels"], function(jQuery, jQueryMobile, labels) {
+define(['jquery', "i18n!nls/labels"], function(jQuery, labels) {
 	
 	var $ = jQuery;
 
@@ -13,9 +13,8 @@ define(['jquery', 'jquery.mobile', "i18n!nls/labels"], function(jQuery, jQueryMo
 			},
 			loadApp : function() {
 				app.show();
-				jQueryMobile.initializePage();
-				for (callback in this.afterLoadCallbacks) {
-					callback();
+				for (var cbkKey in this.afterLoadCallbacks) {
+					this.afterLoadCallbacks[cbkKey]();
 				}
 			},
 			afterLoadCallbacks : []
@@ -50,7 +49,7 @@ define(['jquery', 'jquery.mobile', "i18n!nls/labels"], function(jQuery, jQueryMo
 		};
 		
 		this.runAfterLoad = function(callback) {
-			priv.afterLoadCallbacks[priv.afterLoadCallbacks] = callback;
+			priv.afterLoadCallbacks[priv.afterLoadCallbacks.length] = callback;
 		};
 		
 		this.res = {
