@@ -1,7 +1,12 @@
 require([ 'app', 'jquery.mobile', 'barcodescanner', 'css!style/jquery.mobile-fix' ],
-	function(app, jqueryMobileModule, barcodeScanner) {
+	function(app, jqueryMobile, barcodeScanner) {
+
+	app.runAfterLoad(function() {
+		jqueryMobile.initializePage();
+	});
 
 	app.start(function() {
+		console.log('app.start');
 		var $$ = app.res.labels;
 		app.applyLabels();
 		var scan = {
