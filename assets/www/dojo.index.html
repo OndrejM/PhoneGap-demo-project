@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Bar Code Scanner (dojo)</title>
+
+<!-- stylesheet will go here -->
+
+<!-- dojo/javascript will go here -->
+<script
+	src="lib/dojo/dojo/dojo.js"
+	data-dojo-config="async:true, mblUserAgent:'Android'"></script>
+
+<script type="text/javascript">
+	// Load the widget parser and mobile base
+
+	require([ "dojox/mobile/parser", "dojox/mobile/deviceTheme", "dojo/query",
+			"dojo/NodeList-dom", "dojox/mobile/compat", "dojox/mobile", "dojo/domReady!", "dojox/mobile/Button" ], 
+			function(parser, deviceTheme, q) {
+
+		// Parse the page for widgets!
+		parser.parse();
+		
+		// display page, which is hidden at the start
+		q('body').style('display', 'block');
+
+	});
+</script>
+
+</head>
+<body style="display: none;">
+
+	<!-- the view or "page"; select it as the "home" screen -->
+	<div id="main" data-dojo-type="dojox.mobile.View"
+		data-dojo-props="selected: true">
+
+		<!-- a sample heading -->
+		<h1 data-dojo-type="dojox.mobile.Heading">Bar Code Scanner (dojo)</h1>
+
+		<!-- a rounded rectangle list container -->
+		<ul data-dojo-type="dojox.mobile.RoundRectList">
+
+			<li data-dojo-type="dojox.mobile.ListItem"
+				data-dojo-props="icon:'mblDomButtonSilverCircleGrayButton',moveTo: 'scanning'"
+				>Scan code!</li>
+		</ul>
+	</div>
+
+	<div id="scanning" data-dojo-type="dojox.mobile.View">
+		<h1 data-dojo-type="dojox.mobile.Heading"
+			data-dojo-props="back:'Back', moveTo:'main'">Scanning code...</h1>
+		<ul data-dojo-type="dojox.mobile.RoundRectList">
+			<li data-dojo-type="dojox.mobile.ListItem"
+				data-dojo-props="moveTo: 'main', transitionDir: -1">Cancel scanning</li>
+		</ul>
+	</div>
+
+
+</body>
+</html>
