@@ -1,39 +1,96 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<title class="i18n">title</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="lib/jquery.mobile-1.1.1.css" />
-<script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
-<script src="requireConf.js"></script>
-<script data-main="app/index" src="require.js"></script>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Your Application Name</title>
+
+<!-- stylesheet will go here -->
+
+<script type="text/javascript" src="cordova.js"></script>
+<script src="app/dojo/dojo.js"
+	data-dojo-config="async:true, mblUserAgent:'Android'"></script>
+<script type="text/javascript" src="app/index.js"></script>
 </head>
 <body style="display: none;">
-	<div data-role="page">
 
-		<div data-role="header">
-			<h1 class="i18n">title</h1>
-		</div>
-		<!-- /header -->
+	<!-- application will go here -->
 
-		<div data-role="content">
-			<button id="butScan" data-role="button" data-icon="star" class="i18n">scan.button.caption</button>
-			<h2 class="i18n">scan.result.header</h2>
-			<ul data-role="listview">
-				<li id="scanMessage">
-					<span class="output"></span>
-				</li>
-				<li id="scanText">
-					<span class="i18n">scan.result.text</span> <span class="output"></span>
-				</li>
-				<li id="scanFormat">
-					<span class="i18n">scan.result.format</span><span class="output"></span>
-				</li>
-			</ul>
-		</div>
-		<!-- /content -->
+	<!-- the view or "page"; select it as the "home" screen -->
+	<div id="main" data-dojo-type="dojox.mobile.View"
+		data-dojo-props="selected: true">
 
+		<!-- a sample heading -->
+		<h1 data-dojo-type="dojox.mobile.Heading">Your Application Name</h1>
+
+		<!-- a rounded rectangle list container -->
+		<ul data-dojo-type="dojox.mobile.RoundRectList">
+
+			<!-- list item with an icon containing a switch -->
+			<li id="butScan" data-dojo-type="dojox.mobile.ListItem"
+				data-dojo-props="icon:'mblDomButtonSilverCircleGrayButton', moveTo:'#'">
+				Scan code!</li>
+		</ul>
+		<ul data-dojo-type="dojox.mobile.RoundRectList">
+
+			<li data-dojo-type="dojox.mobile.ListItem"
+				data-dojo-props="header: true">
+				<div data-dojo-props="layout: left">Scanned data:</div>
+			</li>
+
+			<li data-dojo-type="dojox.mobile.ListItem"
+				data-dojo-props="variableHeight: true">
+				<ul data-dojo-type="dojox.mobile.RoundRectList">
+
+					<li id="scanMessage" data-dojo-type="dojox.mobile.ListItem"
+						data-dojo-props="variableHeight: true">
+						<div data-dojo-props="layout: left" class='value'
+							style="word-wrap: break-word;"></div>
+					</li>
+
+					<li data-dojo-type="dojox.mobile.ListItem"
+						data-dojo-props="header: true">
+						<div data-dojo-props="layout: left">Text:</div>
+					</li>
+
+					<li id="scanText" data-dojo-type="dojox.mobile.ListItem"
+						data-dojo-props="variableHeight: true">
+						<div data-dojo-props="layout: left" class='value'
+							style="word-wrap: break-word;">inginea.examples.phonegap.barcodescaner.MainActivity]
+							Unable to resolve target 'android-7'</div>
+					</li>
+
+					<li data-dojo-type="dojox.mobile.ListItem"
+						data-dojo-props="header: true">
+						<div data-dojo-props="layout: left">Type of code:</div>
+					</li>
+
+					<li id="scanFormat" data-dojo-type="dojox.mobile.ListItem"
+						data-dojo-props="variableHeight: true">
+						<div data-dojo-props="layout: left" class='value'
+							style="word-wrap: break-word;"></div>
+					</li>
+
+				</ul>
+			</li>
+
+		</ul>
 	</div>
-	<!-- /page -->
+
+	<div id="message" data-dojo-type="dojox.mobile.View">
+		<!-- a sample heading -->
+		<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props="back: 'Back'"><span class="value">Scanning...</span></h1>
+
+		<ul data-dojo-type="dojox.mobile.RoundRectList">
+			<li data-dojo-type="dojox.mobile.ListItem"
+				data-dojo-props="variableHeight: true" class="messageTextItem">
+				<div data-dojo-props="layout: left" class='value'
+					style="word-wrap: break-word;">Please scan code...</div>
+			</li>
+		</ul>
+	</div>
+
+
 </body>
 </html>
