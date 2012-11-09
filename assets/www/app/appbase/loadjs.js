@@ -24,7 +24,17 @@ define(['dojo/_base/config', 'appbase/globals'], function(config, g) {
 			}
 			var idConfig = config.loadjs[id];
 			if (!idConfig._scriptLoaded) {
-				require([config.baseUrl + "/../" + id], function() {
+				var urlPath;
+				if (config.baseUrl.length > 0) {
+					if (config.baseUrl.charAt(config.baseUrl.length-1) === '/') {
+						urlPath = config.baseUrl + "../" + id;
+					} else {
+						urlPath = config.baseUrl + "/../" + id;
+					}
+				} else {
+					urlPath = id;
+				}
+				require([urlPath], function() {
 					if (idConfig) {
 						if (idConfig.init && typeof idConfig.init === 'function') {
 							idConfig.init();

@@ -1,6 +1,6 @@
 define({
     "root": {
-        "title": "PhoneGap Bar Code Scanner",
+        "title": "Bar Code Scanner",
         "scan" : {
         	"ok" : "We scanned a barcode",
         	"cancelled": "Scan cancelled",

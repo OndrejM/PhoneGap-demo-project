@@ -28,6 +28,9 @@ require({
 	function(app, parser, $, $w, g, barcodeScanner) {
 
 	app.runAfterLoad(function() {
+		var $$ = app.res.labels;
+		app.applyLabels();
+
 		// Parse the page for widgets!
 		parser.parse();
 

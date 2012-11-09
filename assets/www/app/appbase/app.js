@@ -1,7 +1,8 @@
 // after module loads, call app.start(...) to run the application code after all environment is initialized
 // app.start(...) executes callback after all is loaded, similarly to jQuery('document').ready(...)
 
-define(['appbase/phonegap', 'appbase/env/envLoad'], function(phoneGap, env) {
+define(['appbase/phonegap', 'appbase/env/envLoad', "dojo/i18n!nls/labels"], 
+		function(phoneGap, env, labels) {
 	
 	function App() {
 		var app = this;
@@ -53,12 +54,20 @@ define(['appbase/phonegap', 'appbase/env/envLoad'], function(phoneGap, env) {
 		};
 		
 		this.res = {
-			// TODO
-		};
+			labels : labels
+		};			
 		
 		this.applyLabels = function() {
-			// TODO
-		};
+			$('.i18n').each(function(i, elem) {
+				var $elem = $(elem);
+				var labelKeys = $elem.text().trim().split('.');
+				var label = app.res.labels;
+				for (iKey in labelKeys) {
+					label = label[labelKeys[iKey]];
+				}
+				$elem.text(label);
+			});
+		}
 		
 		this.env = env;
 		
