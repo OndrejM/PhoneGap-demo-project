@@ -1,7 +1,7 @@
 // after module loads, call app.start(...) to run the application code after all environment is initialized
 // app.start(...) executes callback after all is loaded, similarly to jQuery('document').ready(...)
 
-define(['appbase/phonegap', 'appbase/env/envLoad'], function(phoneGap) {
+define(['appbase/phonegap', 'appbase/env/envLoad'], function(phoneGap, env) {
 	
 	function App() {
 		var app = this;
@@ -58,7 +58,12 @@ define(['appbase/phonegap', 'appbase/env/envLoad'], function(phoneGap) {
 		
 		this.applyLabels = function() {
 			// TODO
-		}
+		};
+		
+		this.env = env;
+		
+		this.isDev = (this.env == 'dev');
+		this.isProd = (this.env == 'prod');
 	}
 	
 	return new App();

@@ -9,4 +9,5 @@ define(['dojo/_base/config', 'appbase/globals', 'require'], function(config, g, 
 	if (config.environment) {
 		require(['./' + config.environment])
 	};
+	return config.environment;
 });

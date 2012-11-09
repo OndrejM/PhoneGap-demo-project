@@ -70,25 +70,41 @@ require({
 	
 	function attachEventHandlers(scan) {
 		$w.byId('butScan').on("click", function() {
-			console.log('butScan clicked');
-			barcodeScanner.scan(function(result) {
-				if (result.cancelled) {
-					scan.$msg.outputText('$$.scan.cancelled');
-				} else {
-					scan.$msg.outputText('$$.scan.ok');
-					scan.$text.outputText(result.text);
-					scan.$fmt.outputText(result.format);
-				}
-				for (p in scan) {
-					var e = scan[p];
-					if (e.outputText().length > 0) {
-						e.show();
+			console.log('butScan clicked, this = ' + this);
+			setMessage('Scanning code...', 'Initializing camera...')
+			var handle = $w.byId('message').on("afterTransitionIn", function() {
+				handle.remove();
+
+				barcodeScanner.scan(function(result) {
+					if (result.cancelled) {
+						scan.$msg.outputText('$$.scan.cancelled');
+					} else {
+						scan.$msg.outputText('$$.scan.ok');
+						scan.$text.outputText(result.text);
+						scan.$fmt.outputText(result.format);
 					}
+					for (p in scan) {
+						var e = scan[p];
+						if (e.outputText().length > 0) {
+							e.show();
+						}
+					}
+				}, function(error) {
+					scan.$msg.text('$$.scan.failed' + error).show();
+				});
+
+				if (app.isDev) {
+					setTimeout(function() {
+						history.back();
+					}, 3000);	
+				} else {
+					history.back();
 				}
-			}, function(error) {
-				scan.$msg.text('$$.scan.failed' + error).show();
 			});
+
+//			this.transitionTo('#message');
 		});
+		
 	}
 
 		
@@ -104,6 +120,12 @@ require({
 			}
 		})
 		return $result;
+	}
+	
+	function setMessage(title, text) {
+		var $root = $('#message');
+		$root.find('h1 .value').text(title);
+		$root.find('.messageTextItem .value').text(text);
 	}
 	
 });
