@@ -21,8 +21,8 @@ require({
 				}
 			}
 		}
-	}, [ "appbase/app", "dojox/mobile/parser", "appbase/loadjs!jquery/nonAMD/jquery.js", "dijit/registry",
-		"appbase/globals", "appbase/loadjs!cordova/ext/nonAMD/barcodescanner.js",
+	}, [ "appbase/app", "dojox/mobile/parser", "jquery/jquery", "dijit/registry",
+		"appbase/globals", "cordova/ext/barcodescanner",
 		"dojox/mobile/deviceTheme", "dojox/mobile/compat", "dojox/mobile",
 		"dojo/domReady!", "dojox/mobile/bookmarkable", "appbase/htmlMixins" ], 
 	function(app, parser, $, $w, g, barcodeScanner) {
